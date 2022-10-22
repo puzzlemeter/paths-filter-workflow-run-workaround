@@ -22,7 +22,7 @@ jobs:
         run: |
           ls -la
           REF_BASE=`cat ref-base.txt`
-          echo "REF_BASE=$REF_BASE" >> $GITHUB_OUTPUT
+          echo "REF_BASE=$REF_BASE" >> $GITHUB_ENV
           echo '${{ toJSON(steps.download.outputs.artifacts) }}'
           echo '${{ env.REF_BASE }}'
       - uses: dorny/paths-filter@v2
