@@ -22,6 +22,10 @@ jobs:
           echo '${{ toJSON(steps.filter.outputs) }}'
       - name: upload base ref info
         run: |
+          if [ ${{ github.event_name }} -eq 'push' ]; then
+            BASE=${{ github.event.before }}
+          fi
+          echo $BASE
           echo '${{ toJSON(github) }}'
           echo '${{ toJSON(github.head_ref) }}'
         # pushの場合はbeforeを保存する
