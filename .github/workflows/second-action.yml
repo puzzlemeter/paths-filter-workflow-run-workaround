@@ -19,6 +19,7 @@ jobs:
       - name: set REF_BASE to env
         run: |
           cat ref-base.txt
+          echo 'github.ref=${{ github.ref }}'
           echo "REF_BASE=$(cat ref-base.txt)" >> $GITHUB_ENV
       - uses: dorny/paths-filter@v2
         id: filter
