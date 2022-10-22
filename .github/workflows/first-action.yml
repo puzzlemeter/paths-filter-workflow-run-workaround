@@ -24,15 +24,21 @@ jobs:
         run: |
           if [[ '${{ github.event_name }}' == 'push' ]]; then
             BASE=${{ github.event.before }}
+            ORIGINAL_REF=${{ github.ref }}
           elif [[ '${{ github.event_name }}' == 'pull_request' ]]; then
             BASE=${{ github.base_ref }}
+            ORIGINAL_REF=${{ github.head_ref }}
           fi
           echo $BASE > ref-base.txt
+          echo $ORIGINAL > ref-original.txt
           cat ref-base.txt
+          cat ref-original.txt
           echo '${{ toJSON(github) }}'
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v3
         with:
           name: ref-base
-          path: ref-base.txt
+          path: |
+            ref-base.txt
+            ref-original.txt
           retention-days: 1
