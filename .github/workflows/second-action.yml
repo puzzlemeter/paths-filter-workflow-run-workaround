@@ -11,14 +11,12 @@ jobs:
       - uses: actions/checkout@v3
       - name: Download a single artifact
         uses: dawidd6/action-download-artifact@v2
-        id: download
         with:
           workflow: first-action.yml
           name: ref-base
           workflow_conclusion: success
       - name: Download a single artifact 2
         uses: dawidd6/action-download-artifact@v2
-        id: download
         with:
           workflow: first-action.yml
           name: ref-original
