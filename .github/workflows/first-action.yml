@@ -30,7 +30,7 @@ jobs:
             ORIGINAL_REF=${{ github.head_ref }}
           fi
           echo $BASE > ref-base.txt
-          echo $ORIGINAL > ref-original.txt
+          echo $ORIGINAL_REF > ref-original.txt
           cat ref-base.txt
           cat ref-original.txt
           echo '${{ toJSON(github) }}'
