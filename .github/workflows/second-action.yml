@@ -16,15 +16,23 @@ jobs:
           workflow: first-action.yml
           name: ref-base
           workflow_conclusion: success
+      - name: Download a single artifact 2
+        uses: dawidd6/action-download-artifact@v2
+        id: download
+        with:
+          workflow: first-action.yml
+          name: ref-original
+          workflow_conclusion: success
       - name: set REF_BASE to env
         run: |
           cat ref-base.txt
-          echo 'github.ref=${{ github.ref }}'
+          cat ref-original.txt
           echo "REF_BASE=$(cat ref-base.txt)" >> $GITHUB_ENV
       - uses: dorny/paths-filter@v2
         id: filter
         with:
           base: ${{ env.REF_BASE }}
+          ref: ${{ env.REF_ORIGINAL }}
           filters: |
             src:
               - src/**
