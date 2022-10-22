@@ -20,6 +20,7 @@ jobs:
           cat ref-base.txt
           cat ref-original.txt
           echo "REF_BASE=$(cat ref-base.txt)" >> $GITHUB_ENV
+          echo "REF_ORIGINAL=$(cat ref-original.txt)" >> $GITHUB_ENV
       - uses: dorny/paths-filter@v2
         id: filter
         with:
