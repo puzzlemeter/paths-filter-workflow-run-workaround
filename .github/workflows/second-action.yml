@@ -18,16 +18,17 @@ jobs:
           workflow: first-action.yml
           name: ref-base
           workflow_conclusion: success
-          path: ./
       - shell: bash
+
         run: |
           ls -la
+          cat ref-base.txt
+          echo "REF_BASE=$(cat ref-base.txt)" >> $GITHUB_OUTPUT
           echo '${{ toJSON(steps.download.outputs.artifacts) }}'
-          cat '${{ steps.download.outputs.download-path }}'
       - uses: dorny/paths-filter@v2
         id: filter
         with:
-          base: ${{ steps.download.outputs.download-path }}
+          base: ${{ env.REF_BASE }}
           filters: |
             src:
               - src/**
