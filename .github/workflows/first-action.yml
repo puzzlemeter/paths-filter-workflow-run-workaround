@@ -28,6 +28,7 @@ jobs:
             BASE=${{ github.base_ref }}
           fi
           echo $BASE > ref-base.txt
+          cat ref-base.txt
           echo '${{ toJSON(github) }}'
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v3
