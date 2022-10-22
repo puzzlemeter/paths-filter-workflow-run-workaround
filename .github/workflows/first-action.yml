@@ -22,7 +22,7 @@ jobs:
           echo '${{ toJSON(steps.filter.outputs) }}'
       - name: upload base ref info
         run: |
-          if [ ${{ github.event_name }} -eq 'push' ]; then
+          if [[ '${{ github.event_name }}' == 'push' ]]; then
             BASE=${{ github.event.before }}
           fi
           echo $BASE
