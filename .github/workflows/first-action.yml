@@ -24,15 +24,20 @@ jobs:
         run: |
           if [[ '${{ github.event_name }}' == 'push' ]]; then
             BASE=${{ github.event.before }}
+            CURRENT_BRANCH=${{ github.ref }}
+          elif [[ '${{ github.event_name }}' == 'pull_request' ]]; then
+            BASE=${{ github.base_ref }}
+            CURRENT_BRANCH=${{ github.head_ref }}
           fi
-          echo $BASE > ref-base.txt
-          echo '${{ toJSON(github) }}'
-          echo '${{ toJSON(github.head_ref) }}'
-        # pushの場合はbeforeを保存する
-        # pull requestの場合はmain branchを保存する
+          echo $BASE > base.txt
+          echo $CURRENT_BRANCH > current-branch.txt
+          cat base.txt
+          cat current-branch.txt
       - name: "Upload Artifact"
         uses: actions/upload-artifact@v3
         with:
-          name: ref-base
-          path: ref-base.txt
+          name: original-refs
+          path: |
+            base.txt
+            current-branch.txt
           retention-days: 1
