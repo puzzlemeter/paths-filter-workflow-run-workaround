@@ -10,10 +10,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        id: download
+        with:
+          name: ref-base
       - uses: actions/checkout@v3
       - uses: dorny/paths-filter@v2
         id: filter
         with:
+          base: ${{ steps.download.outputs.download-path }}
           filters: |
             src:
               - src/**
