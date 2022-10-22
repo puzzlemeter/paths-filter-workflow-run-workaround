@@ -10,6 +10,8 @@ jobs:
     steps:
       # checkoutでrefを指定しないとmainを持ってきてしまう
       - uses: actions/checkout@v3
+        with:
+          ref: "update-src"
       - name: Download a single artifact
         uses: dawidd6/action-download-artifact@v2
         id: download
