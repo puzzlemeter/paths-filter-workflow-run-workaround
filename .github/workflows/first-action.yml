@@ -20,17 +20,16 @@ jobs:
       - name: check
         run: |
           echo '${{ toJSON(steps.filter.outputs) }}'
-      - name: upload base ref info
+      - name: Save base ref info
         run: |
           if [[ '${{ github.event_name }}' == 'push' ]]; then
             BASE=${{ github.event.before }}
           fi
-          echo $BASE > ref-base.txt
-          echo '${{ toJSON(github) }}'
-          echo '${{ toJSON(github.head_ref) }}'
-        # pushの場合はbeforeを保存する
-        # pull requestの場合はmain branchを保存する
-      - name: "Upload Artifact"
+          echo $BASE > base.txt
+          echo $CURRENT_BRANCH > current-branch.txt
+          cat base.txt
+          cat current-branch.txt
+      - name: Upload base ref info
         uses: actions/upload-artifact@v3
         with:
           name: ref-base

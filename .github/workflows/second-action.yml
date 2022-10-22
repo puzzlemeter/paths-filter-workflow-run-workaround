@@ -17,10 +17,8 @@ jobs:
           workflow_conclusion: success
       - name: set REF_BASE to env
         run: |
-          cat ref-base.txt
-          cat ref-original.txt
-          echo "REF_BASE=$(cat ref-base.txt)" >> $GITHUB_ENV
-          echo "REF_ORIGINAL=$(cat ref-original.txt)" >> $GITHUB_ENV
+          echo "BASE=$(cat base.txt)" >> $GITHUB_ENV
+          echo "CURRENT_BRANCH=$(cat current-branch.txt)" >> $GITHUB_ENV
       - uses: dorny/paths-filter@v2
         id: filter
         with:
