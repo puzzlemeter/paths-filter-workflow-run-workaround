@@ -17,7 +17,9 @@ jobs:
           name: ref-base
           workflow_conclusion: success
       - name: set REF_BASE to env
-        run: echo "REF_BASE=$(cat ref-base.txt)" >> $GITHUB_ENV
+        run: |
+          cat ref-base.txt
+          echo "REF_BASE=$(cat ref-base.txt)" >> $GITHUB_ENV
       - uses: dorny/paths-filter@v2
         id: filter
         with:
