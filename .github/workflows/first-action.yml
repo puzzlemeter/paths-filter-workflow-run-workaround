@@ -1,0 +1,23 @@
+name: "First action"
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: |
+          src:
+            - src/**
+          lib:
+            - lib/**
+      - name: check
+        run: |
+          echo '${{ toJSON(steps.filter.outputs) }}'
