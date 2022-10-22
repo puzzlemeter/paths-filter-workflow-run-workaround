@@ -18,13 +18,11 @@ jobs:
           workflow: first-action.yml
           name: ref-base
           workflow_conclusion: success
-      - shell: bash
+      - name: set REF_BASE to env
+        shell: bash
         run: |
-          ls -la
           REF_BASE=`cat ref-base.txt`
-          echo "REF_BASE=$REF_BASE" >> $GITHUB_ENV
-          echo '${{ toJSON(steps.download.outputs.artifacts) }}'
-          echo '${{ env.REF_BASE }}'
+          echo "REF_BASE=$(cat ref-base.txt)" >> $GITHUB_ENV
       - uses: dorny/paths-filter@v2
         id: filter
         with:
