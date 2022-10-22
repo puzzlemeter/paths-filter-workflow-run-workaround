@@ -13,7 +13,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: first-action.yml
-          name: ref-base
+          name: original-refs
           workflow_conclusion: success
       - name: set REF_BASE to env
         run: |
@@ -22,8 +22,8 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: filter
         with:
-          base: ${{ env.REF_BASE }}
-          ref: ${{ env.REF_ORIGINAL }}
+          base: ${{ env.BASE }}
+          ref: ${{ env.CURRENT_BRANCH }}
           filters: |
             src:
               - src/**
