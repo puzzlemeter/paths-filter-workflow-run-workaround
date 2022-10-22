@@ -17,11 +17,12 @@ jobs:
           workflow: first-action.yml
           name: ref-base
           workflow_conclusion: success
+          path: ./
       - uses: actions/checkout@v3
       - shell: bash
         run: |
           ls -la
-          echo '${{ toJSON(steps.download.outputs) }}'
+          echo '${{ toJSON(steps.download.outputs.artifacts) }}'
           cat '${{ steps.download.outputs.download-path }}'
       - uses: dorny/paths-filter@v2
         id: filter
