@@ -11,10 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download a single artifact
-        uses: actions/download-artifact@v3
+        uses: dawidd6/action-download-artifact@v2
         id: download
         with:
           name: ref-base
+          workflow_conclusion: success
       - uses: actions/checkout@v3
       - uses: dorny/paths-filter@v2
         id: filter
