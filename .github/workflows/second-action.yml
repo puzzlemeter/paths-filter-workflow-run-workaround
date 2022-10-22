@@ -18,6 +18,10 @@ jobs:
           name: ref-base
           workflow_conclusion: success
       - uses: actions/checkout@v3
+      - shell: bash
+        run: |
+          echo ${{ steps.download.outputs.download-path }}
+          cat ${{ steps.download.outputs.download-path }}
       - uses: dorny/paths-filter@v2
         id: filter
         with:
