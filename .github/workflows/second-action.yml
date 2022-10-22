@@ -15,12 +15,6 @@ jobs:
           workflow: first-action.yml
           name: ref-base
           workflow_conclusion: success
-      - name: Download a single artifact 2
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: first-action.yml
-          name: ref-original
-          workflow_conclusion: success
       - name: set REF_BASE to env
         run: |
           cat ref-base.txt
