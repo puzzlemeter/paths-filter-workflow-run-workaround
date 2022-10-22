@@ -20,3 +20,9 @@ jobs:
       - name: check
         run: |
           echo '${{ toJSON(steps.filter.outputs) }}'
+      - name: upload base ref info
+        run: |
+          echo '${{ toJSON(github) }}'
+          echo '${{ toJSON(github.head_ref) }}'
+        # pushの場合はbeforeを保存する
+        # pull requestの場合はmain branchを保存する
