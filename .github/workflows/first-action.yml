@@ -25,8 +25,14 @@ jobs:
           if [[ '${{ github.event_name }}' == 'push' ]]; then
             BASE=${{ github.event.before }}
           fi
-          echo $BASE
+          echo $BASE > ref-base.txt
           echo '${{ toJSON(github) }}'
           echo '${{ toJSON(github.head_ref) }}'
         # pushの場合はbeforeを保存する
         # pull requestの場合はmain branchを保存する
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v3
+        with:
+          name: ref-base
+          path: ref-base.txt
+          retention-days: 1
