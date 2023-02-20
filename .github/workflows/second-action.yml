@@ -1,7 +1,7 @@
 name: "Second action"
 on:
   workflow_run:
-    workflows: ["First action"]
+    workflows: ["Link action"]
     types: [completed]
 
 jobs:
