@@ -13,7 +13,7 @@ jobs:
       - name: Download a single artifact
         uses: dawidd6/action-download-artifact@v2
         with:
-          workflow: first-action.yml
+          workflow: build.yml
           name: original-refs
           workflow_conclusion: success
       - name: set REF_BASE to env
