@@ -9,21 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Download a single artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: build.yml
-          name: original-refs
-          workflow_conclusion: success
-      - name: set REF_BASE to env
-        run: |
-          {
-            echo "BASE=$(cat base.txt)"
-            echo "CURRENT_BRANCH=$(cat current-branch.txt)"
-          } >> $GITHUB_ENV
-          echo "${{ toJSON(env) }}"
-      - name: echo github.event.workflow_run
-        run: echo "${{ toJSON(github.event.workflow_run) }}"
+    - run: |
+        echo "Deploy After Merged"
+  #     - name: Download a single artifact
+  #       uses: dawidd6/action-download-artifact@v2
+  #       with:
+  #         workflow: build.yml
+  #         name: original-refs
+  #         workflow_conclusion: success
+  #     - name: set REF_BASE to env
+  #       run: |
+  #         {
+  #           echo "BASE=$(cat base.txt)"
+  #           echo "CURRENT_BRANCH=$(cat current-branch.txt)"
+  #         } >> $GITHUB_ENV
+  #         echo "${{ toJSON(env) }}"
+  #     - name: echo github.event.workflow_run
+  #       run: echo "${{ toJSON(github.event.workflow_run) }}"
   # dump:
   #   runs-on: ubuntu-latest
   #   steps:
