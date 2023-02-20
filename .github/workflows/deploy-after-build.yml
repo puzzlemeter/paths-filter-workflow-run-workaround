@@ -20,7 +20,6 @@ jobs:
           {
             echo "BASE=$(cat base.txt)"
             echo "CURRENT_BRANCH=$(cat current-branch.txt)"
-            echo "GITHUB_SHA_SHORT=$(cat github-sha.txt)"
           } >> $GITHUB_ENV
           echo "${{ toJSON(env) }}"
       - name: echo github.event.workflow_run
