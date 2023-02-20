@@ -16,7 +16,7 @@ jobs:
           echo "${GITHUB_SHA::7}" > github-sha.txt
           cat base.txt
           cat current-branch.txt
-          cat current-branch.txt
+          cat github-sha.txt
       - name: Upload base ref info
         uses: actions/upload-artifact@v3
         with:
