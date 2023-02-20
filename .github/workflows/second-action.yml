@@ -21,13 +21,12 @@ jobs:
             echo "BASE=$(cat base.txt)"
             echo "CURRENT_BRANCH=$(cat current-branch.txt)"
           } >> $GITHUB_ENV
-      - name: echo env
-        run: echo "${{ toJSON(env) }}"
+          echo "${{ toJSON(env) }}"
       - name: echo github.event.workflow_run
         run: echo "${{ toJSON(github.event.workflow_run) }}"
-  dump:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Dump context
-        uses: crazy-max/ghaction-dump-context@v2
+  # dump:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     -
+  #       name: Dump context
+  #       uses: crazy-max/ghaction-dump-context@v2
