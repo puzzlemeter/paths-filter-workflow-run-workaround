@@ -18,19 +18,5 @@ jobs:
         run: |
           echo "BASE=$(cat base.txt)" >> $GITHUB_ENV
           echo "CURRENT_BRANCH=$(cat current-branch.txt)" >> $GITHUB_ENV
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ env.CURRENT_BRANCH }}
-      - uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          base: ${{ env.BASE }}
-          ref: ${{ env.CURRENT_BRANCH }}
-          filters: |
-            src:
-              - src/**
-            lib:
-              - lib/**
-      - name: check
-        run: |
-          echo '${{ toJSON(steps.filter.outputs) }}'
+      - run: echo '${{ env.BASE }}'
+      - run: echo '${{ env.CURRENT_BRANCH }}'
