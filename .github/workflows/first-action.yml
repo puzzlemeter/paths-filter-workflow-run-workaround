@@ -13,8 +13,10 @@ jobs:
           CURRENT_BRANCH=${{ github.head_ref }}
           echo $BASE > base.txt
           echo $CURRENT_BRANCH > current-branch.txt
+          echo "${GITHUB_SHA::7}" > github-sha.txt
           cat base.txt
           cat current-branch.txt
+          cat github-sha.txt
       - name: Upload base ref info
         uses: actions/upload-artifact@v3
         with:
@@ -22,4 +24,5 @@ jobs:
           path: |
             base.txt
             current-branch.txt
+            github-sha.txt
           retention-days: 1
